@@ -1,0 +1,92 @@
+[gd_scene load_steps=10 format=3 uid="uid://c7rybs313u4dc"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="3_bhs0a"]
+[ext_resource type="Texture2D" uid="uid://dgdn8p2c66s5u" path="res://assets/Selfmade/Laufen und stehen Charakter Magdalena.png" id="5_cgkel"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ct5ev"]
+atlas = ExtResource("5_cgkel")
+region = Rect2(13, 3, 39, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vmix"]
+atlas = ExtResource("5_cgkel")
+region = Rect2(231, 3, 39, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_412fc"]
+atlas = ExtResource("5_cgkel")
+region = Rect2(57, 3, 39, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hh84g"]
+atlas = ExtResource("5_cgkel")
+region = Rect2(166, 3, 39, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rj7wf"]
+atlas = ExtResource("5_cgkel")
+region = Rect2(275, 3, 39, 75)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mtj3x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ct5ev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0vmix")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 0.5
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_412fc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hh84g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rj7wf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hh84g")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 2.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gpuhg"]
+radius = 4.0
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 1
+y_sort_enabled = true
+collision_layer = 2
+script = ExtResource("3_bhs0a")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(0, -6)
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_mtj3x")
+animation = &"idle"
+autoplay = "idle"
+speed_scale = 2.0
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-14, -53)
+sprite_frames = SubResource("SpriteFrames_mtj3x")
+animation = &"idle"
+speed_scale = 2.0
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-14, -53)
+sprite_frames = SubResource("SpriteFrames_mtj3x")
+animation = &"idle"
+speed_scale = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_gpuhg")
